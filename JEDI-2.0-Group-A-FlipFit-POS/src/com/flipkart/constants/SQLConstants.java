@@ -52,11 +52,19 @@ public class SQLConstants {
      * SQL query to verify gyms (admin function)
      */
     public static final String ADMIN_VERIFY_GYMS = "UPDATE gyms SET status = ? WHERE gymId = ?";
+    /**
+     * SQL query to verify gyms (admin function)
+     */
+    public static final String ADMIN_VERIFY_ALL_GYMS = "UPDATE gyms SET status = ? ";
 
     /**
      * SQL query to verify gym owners (admin function)
      */
     public static final String ADMIN_VERIFY_GYMOWNERS = "UPDATE gym_owner SET status = ? WHERE ownerId = ?";
+    /**
+     * SQL query to verify gym owners (admin function)
+     */
+    public static final String ADMIN_VERIFY_ALL_GYMOWNERS = "UPDATE gym_owner SET status = ? ";
 
     /**
      * SQL query to view unverified gyms (admin function)

@@ -61,7 +61,7 @@ public class CustomerDAOImplementation implements CustomerDAOInterface {
     }
 
     @Override
-    public boolean bookSlot(int gymId, int time,String email) {
+    public boolean bookSlot(String gymId, int time,String email) {
         conn = DatabaseConnector.getConnection();
         Statement statement = null;
         ResultSet resultSet = null;
@@ -86,7 +86,7 @@ public class CustomerDAOImplementation implements CustomerDAOInterface {
             preparedStatement.setInt(3, 11);
             preparedStatement.setInt(4, time);
             preparedStatement.setInt(5, time);
-            preparedStatement.setInt(6, gymId);
+            preparedStatement.setString(6, gymId);
 
             int rowsInserted = preparedStatement.executeUpdate();
 
@@ -107,7 +107,7 @@ public class CustomerDAOImplementation implements CustomerDAOInterface {
         return true;
     }
 
-    private int getSeatNumberWithGymIDandSlotIdFromSlots(int gymId, int time) {
+    private int getSeatNumberWithGymIDandSlotIdFromSlots(String gymId, int time) {
         conn = DatabaseConnector.getConnection();
         Statement statement = null;
         ResultSet resultSet = null;
@@ -125,7 +125,7 @@ public class CustomerDAOImplementation implements CustomerDAOInterface {
         return x;
     }
 
-    private void alterSeatsWithGymIDSlotID(int gymId, int time,int x) {
+    private void alterSeatsWithGymIDSlotID(String gymId, int time,int x) {
         conn = DatabaseConnector.getConnection();
         Statement statement = null;
         int resultSet = 0;
@@ -144,7 +144,7 @@ public class CustomerDAOImplementation implements CustomerDAOInterface {
     }
 
 
-    private int getSeatNumberWithGymIDandSlotId(int gymId, int time) {
+    private int getSeatNumberWithGymIDandSlotId(String gymId, int time) {
         conn = DatabaseConnector.getConnection();
         Statement statement=null;
         ResultSet resultSet = null;
@@ -153,7 +153,7 @@ public class CustomerDAOImplementation implements CustomerDAOInterface {
         try {
             String sqlQuery= "SELECT COUNT(*) from Booking where gymId=? AND time=?";
             preparedStatement = conn.prepareStatement(sqlQuery);
-            preparedStatement.setInt(1, gymId);
+            preparedStatement.setString(1, gymId);
             preparedStatement.setInt(2, time);
 
             resultSet = preparedStatement.executeQuery();
@@ -290,13 +290,14 @@ public class CustomerDAOImplementation implements CustomerDAOInterface {
 
     public List<Slots> getGymSlotsWithGymId(String id){
         conn = DatabaseConnector.getConnection();
-        Statement statement = null;
+        PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         List<Slots> slotList = new ArrayList<>();
         try {
-            String sqlQuery = "SELECT * FROM slots WHERE gymId= " + id;
-            statement = conn.createStatement();
-            resultSet = statement.executeQuery(sqlQuery);
+        	String sqlQuery = "SELECT * FROM slots WHERE gymId=?";
+            preparedStatement = conn.prepareStatement(sqlQuery);
+            preparedStatement.setString(1, id);
+            resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
 
             	int startTime = resultSet.getInt("startTime");

@@ -87,7 +87,7 @@ public class UserServiceOperations implements UserServices {
 	 * @return
 	 */
 	@Override
-	public boolean bookSlots(int gymId, int time, String email) {
+	public boolean bookSlots(String gymId, int time, String email) {
 		return customerDAOInterface.bookSlot(gymId,time,email);
 	}
 

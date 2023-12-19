@@ -5,6 +5,7 @@ import com.flipkart.business.GymOwnerService;
 import com.flipkart.business.GymOwnerServiceOperation;
 import com.flipkart.business.UserServiceOperations;
 import com.flipkart.business.UserServices;
+import com.flipkart.dao.AdminDAOImplementation;
 import com.flipkart.utils.DatabaseConnector;
 
 import java.io.InputStream;
@@ -85,6 +86,7 @@ public class GymFlipFitApplication {
                     switch (role) {
                         case "admin" :
                             GymFlipFitAdminMenu admin = new GymFlipFitAdminMenu();
+                            AdminDAOImplementation admin2=new AdminDAOImplementation();
 
                             if(!admin.verifyAdminCredentials(userId,password)){
                                 System.out.println(ANSI_YELLOW + "Invalid Credentials"+ANSI_RESET);
@@ -99,10 +101,12 @@ public class GymFlipFitApplication {
                                 System.out.println("Press 2 for View all Gyms");
                                 System.out.println("Press 3 for View all Gym Owners");
                                 System.out.println("Press 4 for Verify Gym");
-                                System.out.println("Press 5 for Verify GymOwner");
-                                System.out.println("Press 6 for View pending Gyms");
-                                System.out.println("Press 7 for View pending Gym Owners");
-                                System.out.println("Press 8 for Exit");
+                                System.out.println("Press 5 for Verify All Gyms");
+                                System.out.println("Press 6 for Verify GymOwner");
+                                System.out.println("Press 7 for Verify All GymOwners");
+                                System.out.println("Press 8 for View pending Gyms");
+                                System.out.println("Press 9 for View pending Gym Owners");
+                                System.out.println("Press 10 for Exit");
 
                                 int k = Integer.parseInt(obj.nextLine());
 
@@ -122,17 +126,23 @@ public class GymFlipFitApplication {
                                         admin.verifyGym(id1);
                                         break;
                                     case 5:
+                                    	admin2.verifyAllGyms();
+                                    	break;
+                                    case 6:
                                         System.out.println("Enter the Gym Owner Id to be verified ");
                                         String id2 = obj.nextLine();
                                         admin.verifyGymOwner(id2);
                                         break;
-                                    case 6:
+                                    case 7:
+                                    	admin2.verifyAllGymOwners();
+                                    	break;
+                                    case 8:
                                         admin.viewUnverifiedGyms();
                                         break;
-                                    case 7:
+                                    case 9:
                                         admin.viewUnverifiedGymOwners();
                                         break;
-                                    case 8:
+                                    case 10:
                                         flag = false;
                                         break;
                                 }

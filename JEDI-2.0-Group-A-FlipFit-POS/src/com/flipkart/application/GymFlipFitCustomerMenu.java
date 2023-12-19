@@ -99,7 +99,7 @@ public class GymFlipFitCustomerMenu {
                         printGyms(gyms1);
                         System.out.println("Enter the following:");
                         System.out.println("Gym ID");
-                        int gymId = Integer.parseInt(obj.nextLine());
+                        String gymId = (String)obj.nextLine();
                         System.out.println("Slot Time");
                         int time = Integer.parseInt(obj.nextLine());
 
@@ -193,7 +193,7 @@ public class GymFlipFitCustomerMenu {
      * @param email  The email of the user booking the slot.
      * @return True if the slot is booked successfully, false otherwise.
      */
-    public boolean bookSlot(int gymId, int time, String email) {
+    public boolean bookSlot(String gymId, int time, String email) {
         return userServiceOperation.bookSlots(gymId, time, email);
     }
 

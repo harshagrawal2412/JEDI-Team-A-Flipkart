@@ -53,7 +53,7 @@ public interface UserServices {
 	 * @return
 	 * @author bhavya.khandelwal, avinash, atulya
 	 */
-	boolean bookSlots(int gymId, int time, String email);
+	boolean bookSlots(String gymId, int time, String email);
 
 	/**
 	 * This method validates a User with a given Username and password

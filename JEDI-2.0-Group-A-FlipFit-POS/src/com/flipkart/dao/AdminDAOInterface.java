@@ -31,12 +31,16 @@ public interface AdminDAOInterface {
      * @param id - The ID of the gym owner to be verified
      */
     public void verifyGymOwners(String id);
+    
+    public void verifyAllGymOwners();
 
     /**
      * Admin Can Verify the Gyms and change their Status Like Verified Profile
      * @param id - The ID of the gym to be verified
      */
     public void verifyGyms(String id);
+    
+    public void verifyAllGyms();
 
     /**
      * Get a list of unverified gyms

@@ -227,13 +227,14 @@ public class GymOwnerDAOImplementation implements GymOwnerDaoInterface {
 
     public List<Slots> getGymSlotsWithGymId(String id){
         conn = DatabaseConnector.getConnection();
-        Statement statement = null;
+        PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         List<Slots> slotList = new ArrayList<>();
         try {
-            String sqlQuery = "SELECT * FROM slots WHERE gymId= " + id;
-            statement = conn.createStatement();
-            resultSet = statement.executeQuery(sqlQuery);
+            String sqlQuery = "SELECT * FROM slots WHERE gymId=?";
+            preparedStatement = conn.prepareStatement(sqlQuery);
+            preparedStatement.setString(1, id);
+            resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
             	int startTime = resultSet.getInt("startTime");
             	int seats = resultSet.getInt("seatCount");

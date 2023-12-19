@@ -22,7 +22,7 @@ public interface CustomerDAOInterface {
      * @return True if the booking is successful, false otherwise
      * @Author Sugam, Harsh, Ali , Srashti , Dipti
      */
-    boolean bookSlot(int gymId, int time, String email);
+    boolean bookSlot(String gymId, int time, String email);
 
     /**
      * Retrieve a list of all bookings made by a specific user.

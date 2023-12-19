@@ -71,14 +71,14 @@ public class GymFlipFitAdminMenu {
      */
     public void viewUnverifiedGyms() {
         List<Gym> gyms = adminService.getUnverifiedGyms();
-        String leftAlignFormat = "| %-5d | %-20s | %-5d | %-40s | %-20s | %-15s |%n";
+        String leftAlignFormat = "| %-5d | %-20s | %-5s | %-40s | %-20s | %-15s |%n";
         System.out.format("+-------+----------------------+-------+------------------------------------------+----------------------+------------------+\n");
         System.out.format("| Gym   |     Name             | Gym Id|           Address                        |   Location           |     Status       |\n");
         System.out.format("+-------+----------------------+-------+------------------------------------------+----------------------+------------------+\n");
 
         int x = 1;
         for (Gym g : gyms) {
-            System.out.format(leftAlignFormat,x,g.getGymName(),g.getGymId(),g.getGymAddress(),g.getLocation(),g.getStatus());            x++;
+            System.out.format(leftAlignFormat,x,g.getGymName(),g.getGymId().substring(0, 3),g.getGymAddress(),g.getLocation(),g.getStatus());            x++;
         }
         System.out.format("+-------+----------------------+-------+------------------------------------------+----------------------+------------------+\n");
 

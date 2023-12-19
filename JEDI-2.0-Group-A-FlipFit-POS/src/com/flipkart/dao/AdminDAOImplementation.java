@@ -31,7 +31,7 @@ public class AdminDAOImplementation implements AdminDAOInterface {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
-                int id = resultSet.getInt("gymId");
+                String id = resultSet.getString("gymId");
                 String ownerId = resultSet.getString("ownerId");
                 String name = resultSet.getString("gymName");
                 String gymAddress = resultSet.getString("gymAddress");
@@ -155,6 +155,37 @@ public class AdminDAOImplementation implements AdminDAOInterface {
             System.out.println(e.getMessage());
         }
     }
+    
+    @Override
+    public void verifyAllGymOwners() {
+        // update the gymOwner db's status as verified.
+        conn = DatabaseConnector.getConnection();
+        PreparedStatement preparedStatement = null;
+        try {
+            //TODO -> for each onwer, update their status as verified.
+            String query = SQLConstants.ADMIN_VERIFY_ALL_GYMOWNERS;
+            PreparedStatement pstmt = conn.prepareStatement(query);
+            pstmt.setString(1, "verified"); // set input parameter 1
+            
+            int stats = pstmt.executeUpdate(); // execute update statement
+            //conn.commit();
+
+            if (stats > 0) {
+                System.out.println("Verified All GymOwner successfully");
+            } else {
+                throw new VerificationFailedException();
+//                System.out.println("Gym Owner verification failed");
+            }
+
+            System.out.println("---------------------------------");
+
+        }catch(VerificationFailedException ex){
+            System.out.println("Gym Owner "+ex.getMessage());
+        }
+        catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
 
     @Override
     public void verifyGyms(String id) {
@@ -171,6 +202,35 @@ public class AdminDAOImplementation implements AdminDAOInterface {
 
             if (stats > 0) {
                 System.out.println("Verified Gym successfully");
+            } else {
+                throw new VerificationFailedException();
+//                System.out.println("Gym Owner verification failed");
+            }
+
+            System.out.println("---------------------------------");
+
+        }catch(VerificationFailedException ex){
+            System.out.println("Gym "+ex.getMessage());
+        }
+        catch (SQLException e) {
+            System.out.println(e.getMessage());;
+        }
+    }
+    
+    @Override
+    public void verifyAllGyms() {
+        PreparedStatement preparedStatement = null;
+        conn = DatabaseConnector.getConnection();
+        try {
+            //TODO -> for each onwer, update their status as verified.
+            String query = SQLConstants.ADMIN_VERIFY_ALL_GYMS;
+            PreparedStatement pstmt = conn.prepareStatement(query);
+            pstmt.setString(1, "verified"); // set input parameter 1
+            int stats = pstmt.executeUpdate(); // execute update statement
+            //conn.commit();
+
+            if (stats > 0) {
+                System.out.println("Verified All Gym successfully");
             } else {
                 throw new VerificationFailedException();
 //                System.out.println("Gym Owner verification failed");
