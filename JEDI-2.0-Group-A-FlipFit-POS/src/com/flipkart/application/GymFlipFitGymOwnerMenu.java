@@ -44,6 +44,8 @@ public class GymFlipFitGymOwnerMenu {
      * @return True if login is successful, false otherwise.
      */
     boolean gymOwnerLogin(String email, String password) {
+
+//        String user=GymFlipFitApplication.getUserNameByEmail("name","Gym_owner",email);
         if (gymOwnerService.validateLogin(email, password)) {
             System.out.println(ANSI_BLUE+ "Login Successful"+ANSI_RESET);
             LocalDateTime currentTime = LocalDateTime.now();
@@ -51,11 +53,8 @@ public class GymFlipFitGymOwnerMenu {
             // Format date with custom pattern
             DateTimeFormatter myFormat = DateTimeFormatter.ofPattern("dd MMMM yyyy (HH:mm:ss) EEEE", Locale.ENGLISH);
             String formattedDate = currentTime.format(myFormat);
-
-            System.out.println(formattedDate);
-
-            //String user=getUserNameByEmail(username);
-            System.out.println(ANSI_YELLOW+"Hello " +"!!\t"+ formattedDate+ ANSI_RESET);
+            String gymOwner=GymFlipFitApplication.getUserNameByEmail("name","Gym_owner",email);
+            System.out.println(ANSI_YELLOW+"Hello "+ gymOwner +"!!\t"+ formattedDate+ ANSI_RESET);
             while (true) {
                 System.out.println("Gym Owner menu--------------------");
                 System.out.println("1. Add a gym");

@@ -75,7 +75,7 @@ public class GymFlipFitCustomerMenu {
             DateTimeFormatter myFormat = DateTimeFormatter.ofPattern("dd MMMM yyyy (HH:mm:ss) EEEE", Locale.ENGLISH);
             String formattedDate = currentTime.format(myFormat);
 
-            System.out.println(formattedDate);
+//            System.out.println(formattedDate);
             
 //            GymFlipFitApplication app=new GymFlipFitApplication();
             String user=GymFlipFitApplication.getUserNameByEmail("userName","User",username);
