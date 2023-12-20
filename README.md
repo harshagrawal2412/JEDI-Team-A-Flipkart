@@ -1,4 +1,4 @@
-# JEDI-2.0-Group-B-Java-Project-POS
+# JEDI-2.0-Group-A-Java-Project-POS
 # FlipFit - Your Ultimate Fitness Companion 💪🏋️‍♀️
 
 Welcome to FlipFit, where we transform your fitness journey into a seamless, hassle-free experience. Get ready to sweat it out, book your favorite fitness center slots, and embark on a healthier lifestyle with just a few clicks! 🎉🏆
